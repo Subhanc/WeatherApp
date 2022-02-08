@@ -25,32 +25,47 @@ class Service {
         case alerts = "alerts"
     }
     
-    public func getWeatherData(latitude: Float = 42.984924,
-                               longitude: Float = -81.245277,
+    enum UnitType: String {
+        case metric = "metric"
+    }
+    
+    // Long and Lat are place holders until I get CLLocation working.
+    public func fetchSevenDayForcast(latitude: Float = -81.245277 ,
+                               longitude: Float = 42.984924,
                                excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather],
-                               completion: @escaping (AFResult<Weather>) -> Void) {
-       
-        print("Fetching data from API")
-        
+                               unitType: UnitType = .metric,
+                               completion: @escaping (AFResult<WeatherForcastResponse>) -> Void) {
+               
         let excludes: String = excludes.map { $0.rawValue }.joined(separator: ",")
+        
         print(excludes)
         
         let parameters: Parameters = [
             "appid": Service.ACCESS_TOKEN,
             "lat": latitude,
             "lon": longitude,
-            "exclude": excludes
-            
+            "exclude": excludes,
+            "units": unitType
         ]
 
         let request = AF.request(Service.API_URL, parameters: parameters)
         
         request.responseData { response in
             switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    completion(AFResult.success(Weather(data: "yeeee")))
+                case .success(let data):
+                
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        let json = JSON(data)
+                        print("JSON: \(json)")
+
+                        let response = try decoder.decode(WeatherForcastResponse.self, from: data)
+                        
+                        completion(AFResult.success(response))
+                    } catch {
+                        print("Error while decoding response \(error.localizedDescription)")
+                    }
                 case .failure(let error):
                         print(error.localizedDescription)
                         completion(AFResult.failure(error))
@@ -58,8 +73,3 @@ class Service {
         }
     }
 }
-
-struct Weather {
-    var data: String
-}
-

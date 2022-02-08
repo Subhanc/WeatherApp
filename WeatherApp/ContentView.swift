@@ -14,8 +14,7 @@ struct ContentView: View {
         
         
             .onAppear {
-                Service.shared.getWeatherData { result in
-                    print("----")
+                Service.shared.fetchSevenDayForcast { result in
                     print(result)
                 }
             }

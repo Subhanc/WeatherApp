@@ -14,6 +14,7 @@
 		0DECF42727B2E7F80006D2DF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DECF42627B2E7F80006D2DF /* Service.swift */; };
 		0DECF42A27B2E8730006D2DF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DECF42927B2E8730006D2DF /* Alamofire */; };
 		0DECF42E27B2E91D0006D2DF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0DECF42D27B2E91D0006D2DF /* SwiftyJSON */; };
+		0DECF43227B2FFC40006D2DF /* WeatherForcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DECF43127B2FFC40006D2DF /* WeatherForcastResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		0DECF41B27B2E33B0006D2DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DECF41E27B2E33B0006D2DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0DECF42627B2E7F80006D2DF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		0DECF43127B2FFC40006D2DF /* WeatherForcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcastResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				0DECF42627B2E7F80006D2DF /* Service.swift */,
+				0DECF43127B2FFC40006D2DF /* WeatherForcastResponse.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DECF43227B2FFC40006D2DF /* WeatherForcastResponse.swift in Sources */,
 				0DECF41A27B2E3370006D2DF /* ContentView.swift in Sources */,
 				0DECF41827B2E3370006D2DF /* WeatherAppApp.swift in Sources */,
 				0DECF42727B2E7F80006D2DF /* Service.swift in Sources */,
