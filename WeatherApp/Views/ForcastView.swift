@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct WeatherView: View {
+struct ForcastView: View {
 
     @ObservedObject var viewModel: ForcastViewModel
 
@@ -40,15 +40,15 @@ struct WeatherView: View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(Date().dayOfWeek() == forcast.date.dayOfWeek() ? "Today" : forcast.date.dayOfWeek() ?? "Error").font(.title)
+                    Text(Date() == forcast.date ? "Today" : forcast.date.dayOfWeek() ?? "Error").font(.title)
                     
                     HStack {
                         Text("Min Temperature: ").bold()
-                        Text(String(forcast.minTemperature))
+                        Text(String(forcast.minTemperature) + "°C")
                     }
                     HStack {
                         Text("Max Temperature: ").bold()
-                        Text(String(forcast.maxTemperature))
+                        Text(String(forcast.maxTemperature) + "°C")
                     }
                 }
                 Spacer()

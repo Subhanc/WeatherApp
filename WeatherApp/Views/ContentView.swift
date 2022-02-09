@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ScrollView{
-                WeatherView(viewModel: ForcastViewModel(weatherService: WeatherService(locationManager: locationManager)))
+                ForcastView(viewModel: ForcastViewModel(weatherService: WeatherService(locationManager: locationManager)))
             }
             .navigationTitle(Date().getFormattedDate(format: "MMM dd, yyyy") )
             .toolbar {

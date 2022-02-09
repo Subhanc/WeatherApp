@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D1C5E6E27B3196E00D3416F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5E6D27B3196E00D3416F /* Image.swift */; };
-		0D1C5E7527B325D800D3416F /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5E7427B325D800D3416F /* WeatherView.swift */; };
+		0D1C5E7527B325D800D3416F /* ForcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5E7427B325D800D3416F /* ForcastView.swift */; };
 		0DB30B2627B3289F006A05A4 /* ForcastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB30B2527B3289F006A05A4 /* ForcastViewModel.swift */; };
 		0DB30B2A27B32F41006A05A4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB30B2927B32F41006A05A4 /* Date.swift */; };
 		0DB30B2C27B3316F006A05A4 /* ForcastDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB30B2B27B3316F006A05A4 /* ForcastDetailsView.swift */; };
@@ -28,7 +28,7 @@
 
 /* Begin PBXFileReference section */
 		0D1C5E6D27B3196E00D3416F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		0D1C5E7427B325D800D3416F /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		0D1C5E7427B325D800D3416F /* ForcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastView.swift; sourceTree = "<group>"; };
 		0DB30B2527B3289F006A05A4 /* ForcastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastViewModel.swift; sourceTree = "<group>"; };
 		0DB30B2927B32F41006A05A4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0DB30B2B27B3316F006A05A4 /* ForcastDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastDetailsView.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				0DECF41927B2E3370006D2DF /* ContentView.swift */,
-				0D1C5E7427B325D800D3416F /* WeatherView.swift */,
+				0D1C5E7427B325D800D3416F /* ForcastView.swift */,
 				0DB30B2B27B3316F006A05A4 /* ForcastDetailsView.swift */,
 				0DECF46A27B308070006D2DF /* TabBarView.swift */,
 				0DECF46E27B3091F0006D2DF /* ProfileView.swift */,
@@ -234,7 +234,7 @@
 				0DB30B2627B3289F006A05A4 /* ForcastViewModel.swift in Sources */,
 				0DB30B2A27B32F41006A05A4 /* Date.swift in Sources */,
 				0DECF46B27B308070006D2DF /* TabBarView.swift in Sources */,
-				0D1C5E7527B325D800D3416F /* WeatherView.swift in Sources */,
+				0D1C5E7527B325D800D3416F /* ForcastView.swift in Sources */,
 				0DECF46F27B3091F0006D2DF /* ProfileView.swift in Sources */,
 				0DECF42727B2E7F80006D2DF /* WeatherService.swift in Sources */,
 			);
