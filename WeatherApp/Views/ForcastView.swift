@@ -50,6 +50,8 @@ struct ForcastView: View {
                         Text("Max Temperature: ").bold()
                         Text(String(forcast.maxTemperature) + "°C")
                     }
+                    
+                    Text(forcast.date.getFormattedDate(format: "MM-dd-yyyy")).font(.caption)
                 }
                 Spacer()
                 AsyncImage(url: forcast.iconUrl) { image in

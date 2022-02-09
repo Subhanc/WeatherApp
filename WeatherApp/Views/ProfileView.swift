@@ -11,9 +11,6 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         VStack(spacing: 20) {
-            Image(icon: .placeholder)
-                .resizable()
-                .frame(width: 50, height: 50)
             Text("Created by:")
                 .font(.system(size: 20, weight: .semibold, design: .default))
                 .foregroundColor(.secondary)
