@@ -49,14 +49,13 @@ This project follows the *Model, View, ViewModel (MVVM)* structural design patte
 * **Services:** Handles API related services. Utilizes the Alamofire framework.  
 * **Models:**  Models of different components. 
 * **ViewModels:** Includes files responsible for exposing the data objects from the model in such a way that objects are easily managed and presented.
-* **Assets.xcassets:** Includes all images and colours used for this app
 * **Extensions**: Includes the extenstions made to any foundation swift class.
-* **Views**: Includes views of different components.   
+* **Views**: Includes views of different components built with SwiftUI.   
 
 # Getting Started
 
 ### System Requirements
-macOS Big Sur or later and 13.1 to build this project. iOS 15.0 + to deploy. 
+macOS Big Sur or later and xCode 13.1 to build this project. iOS 15.0+ to deploy. 
 
 ### Instructions
 To clone this project in Xcode, click "Clone or download" and select "Open in Xcode".
