@@ -5,8 +5,6 @@
 
 <p float="left" align="center">
     <img src="./Documentation-Folder/image1.gif" width="200"/>
-    <img src="./Documentation-Folder/image2.gif" width="200"/>
-    <img src="./Documentation-Folder/image3.gif" width="200"/>
 </p>
 
 This is my project submission for the GOAT Group iOS New Grad Challenge Submission. 
