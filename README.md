@@ -11,7 +11,9 @@
 
 This is my project submission for the GOAT Group iOS New Grad Challenge Submission. 
 
-Project Goal: To built a weather app using the https://openweathermap.org/api/one-call-api API.
+## Project Goal
+
+To built a weather app using the https://openweathermap.org/api/one-call-api API.
 
 # Documentation 
 
