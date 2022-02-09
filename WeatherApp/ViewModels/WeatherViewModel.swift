@@ -45,7 +45,7 @@ class WeatherViewModel: ObservableObject {
 class Forcast: ObservableObject, Identifiable {
     
     @Published var date: Date
-    @Published var icon: UIImage
+    @Published var iconUrl: URL
     @Published var minTemperature: Double
     @Published var maxTemperature: Double
     
@@ -53,7 +53,6 @@ class Forcast: ObservableObject, Identifiable {
         self.date = Date(timeIntervalSince1970: TimeInterval(dailyForcastResponse.dt))
         self.minTemperature = dailyForcastResponse.temp.min
         self.maxTemperature = dailyForcastResponse.temp.max
-        
-        self.icon = UIImage(fromUrl: "https://openweathermap.org/img/wn/\(dailyForcastResponse.weather.first!.icon)@2x.png")
+        self.iconUrl = URL(string: "https://openweathermap.org/img/wn/\(dailyForcastResponse.weather.first!.icon)@2x.png")!
     }
 }

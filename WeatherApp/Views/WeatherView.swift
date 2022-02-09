@@ -15,6 +15,7 @@ struct WeatherView: View {
   var body: some View {
       LazyVStack(alignment: .leading) {
           Text("7-Day Forcast").font(.title)
+          Divider()
           ForEach(self.viewModel.forcasts) { forcast in
               NavigationLink(destination: ForcastDetailsView()) {
                   forcastView(forcast: forcast)
@@ -42,14 +43,14 @@ struct WeatherView: View {
                 }
                 Spacer()
                 
-                Image(uiImage: forcast.icon)
-                        .resizable()
-                        .frame(width: 100, height: 100)
-//                AsyncImage(url: forcast.iconUrl) { image in
-//                    image.frame(width: 32.0, height: 32.0)
-//                } placeholder: {
-//                    ProgressView()
-//                }.padding(.trailing)
+//                Image(uiImage: forcast.icon)
+//                        .resizable()
+//                        .frame(width: 100, height: 100)
+                AsyncImage(url: forcast.iconUrl) { image in
+                    image.frame(width: 32.0, height: 32.0)
+                } placeholder: {
+                    ProgressView()
+                }.padding(.trailing)
             }
 
             Divider()

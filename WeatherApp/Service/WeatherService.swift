@@ -19,6 +19,7 @@ class WeatherService: NSObject {
     public static let API_URL = "https://api.openweathermap.org/data/2.5/onecall"
     
     private let locationManager = CLLocationManager()
+    private var location: CLLocation = CLLocation()
     private var completionHandler: ((WeatherForcastResponse?, LocationAuthError?) -> Void)?
     
     public override init() {
@@ -39,15 +40,14 @@ class WeatherService: NSObject {
     }
     
     public func loadWeatherData(_ completionHandler: @escaping((WeatherForcastResponse?, LocationAuthError?) -> Void)) {
+        self.fetchSevenDayForcast()
         self.completionHandler = completionHandler
         loadDataOrRequestLocationAuth()
     }
 
     
     // Long and Lat are place holders until I get CLLocation working.
-    public func fetchSevenDayForcast(latitude: Double = -81.245277 ,
-                               longitude: Double = 42.984924,
-                               excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather],
+    public func fetchSevenDayForcast(excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather],
                                unitType: UnitType = .metric) {
                
         let excludes: String = excludes.map { $0.rawValue }.joined(separator: ",")
@@ -56,8 +56,8 @@ class WeatherService: NSObject {
         
         let parameters: Parameters = [
             "appid": WeatherService.ACCESS_TOKEN,
-            "lat": latitude,
-            "lon": longitude,
+            "lat": location.coordinate.latitude,
+            "lon": location.coordinate.longitude,
             "exclude": excludes,
             "units": unitType
         ]
@@ -71,13 +71,8 @@ class WeatherService: NSObject {
                     do {
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let json = JSON(data)
-                        print("JSON: \(json)")
-
                         let response = try decoder.decode(WeatherForcastResponse.self, from: data)
-                        
                         self.completionHandler?(response, nil)
-//                        completion(AFResult.success(response))
                     } catch {
                         print("Error while decoding response \(error.localizedDescription)")
                     }
@@ -104,7 +99,8 @@ extension WeatherService: CLLocationManagerDelegate {
         guard let location = locations.first else {
             return
         }
-        self.fetchSevenDayForcast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        self.location = location
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

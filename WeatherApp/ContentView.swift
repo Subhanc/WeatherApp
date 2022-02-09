@@ -9,12 +9,13 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
+    let weatherViewModel = WeatherViewModel(weatherService: WeatherService())
     var body: some View {
-        
         NavigationView {
             ScrollView{
-                WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
+                WeatherView(viewModel: weatherViewModel)
             }
+            .navigationTitle(Date().getFormattedDate(format: "MMM dd, yyyy") )
         }
     }
 }
