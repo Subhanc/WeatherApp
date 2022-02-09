@@ -11,22 +11,21 @@ import SwiftyJSON
 import CoreLocation
 
 class WeatherService: NSObject {
-    
-    public static let shared = WeatherService()
-    
+        
     public static let ACCESS_TOKEN = "e996f0727652a1fd7ef3261c783e7dc4"
     
     public static let API_URL = "https://api.openweathermap.org/data/2.5/onecall"
     
-    private let locationManager = CLLocationManager()
-    private var location: CLLocation = CLLocation()
+    private var locationManager: CLLocationManager = CLLocationManager()
+    private var location: CLLocation? = nil
     private var completionHandler: ((WeatherForcastResponse?, LocationAuthError?) -> Void)?
     
-    public override init() {
+    public init(locationManager: CLLocationManager) {
         super.init()
-        locationManager.delegate = self
+        self.locationManager = locationManager
+        self.locationManager.delegate = self
     }
-    
+        
     enum Exclude: String {
         case currentWeather = "current"
         case minutely = "minutely"
@@ -52,7 +51,10 @@ class WeatherService: NSObject {
                
         let excludes: String = excludes.map { $0.rawValue }.joined(separator: ",")
         
-        
+        guard let location = location else {
+            print("location is empty")
+            return
+        }
         
         let parameters: Parameters = [
             "appid": WeatherService.ACCESS_TOKEN,
@@ -89,7 +91,7 @@ class WeatherService: NSObject {
            case .denied, .restricted:
              completionHandler?(nil, LocationAuthError())
            default:
-             locationManager.requestWhenInUseAuthorization()
+               completionHandler?(nil, LocationAuthError()) // locationManager.requestWhenInUseAuthorization()
         }
      }
 }
@@ -102,10 +104,12 @@ extension WeatherService: CLLocationManagerDelegate {
         
         self.location = location
     }
-    
+        
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Something went wrong: \(error.localizedDescription)")
     }
 }
 
-public struct LocationAuthError: Error {}
+public struct LocationAuthError: Error {
+    
+}

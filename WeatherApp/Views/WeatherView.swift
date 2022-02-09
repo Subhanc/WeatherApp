@@ -10,20 +10,30 @@ import SwiftUI
 
 struct WeatherView: View {
 
-  @ObservedObject var viewModel: WeatherViewModel
+    @ObservedObject var viewModel: ForcastViewModel
 
-  var body: some View {
-      LazyVStack(alignment: .leading) {
-          Text("7-Day Forcast").font(.title)
-          Divider()
-          ForEach(self.viewModel.forcasts) { forcast in
-              NavigationLink(destination: ForcastDetailsView()) {
-                  forcastView(forcast: forcast)
+    var body: some View {
+          LazyVStack(alignment: .leading) {
+              HStack {
+                  Text("7-Day Forcast").font(.title).bold()
+                  Spacer()
+                  Button("Refresh") {
+                      viewModel.load()
+                  }.foregroundColor(.blue)
               }
-          }
-      }.padding()
-    .onAppear(perform: viewModel.load)
-  }
+              if self.viewModel.forcasts.isEmpty {
+                  Text("No data to show")
+              } else {
+                  Divider()
+                  ForEach(self.viewModel.forcasts) { forcast in
+                      NavigationLink(destination: ForcastDetailsView(forcastDetails: forcast.forcastDetails)) {
+                          forcastView(forcast: forcast)
+                      }
+                  }
+              }
+          }.padding()
+         .onAppear(perform: viewModel.load)
+      }
     
     
     private func forcastView(forcast: Forcast) -> some View {
@@ -42,34 +52,16 @@ struct WeatherView: View {
                     }
                 }
                 Spacer()
-                
-//                Image(uiImage: forcast.icon)
-//                        .resizable()
-//                        .frame(width: 100, height: 100)
                 AsyncImage(url: forcast.iconUrl) { image in
                     image.frame(width: 32.0, height: 32.0)
                 } placeholder: {
                     ProgressView()
                 }.padding(.trailing)
             }
-
             Divider()
         }
     }
 }
-//    .alert(isPresented: $viewModel.shouldShowLocationError) {
-//      Alert(
-//        title: Text("Error"),
-//        message: Text("To see the weather, provide location access in Settings."),
-//        dismissButton: .default(Text("Open Settings")) {
-//          guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
-//          UIApplication.shared.open(settingsURL)
-//        }
-//      )
-//    }
-//    .onAppear(perform: viewModel.refresh)
-//  }
-//}
 
 
 

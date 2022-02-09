@@ -21,7 +21,7 @@ struct ProfileView: View {
             .font(.system(size: 30, weight: .regular, design: .default))
             
             VStack(spacing: 10) {
-                Button("Resume") {UIApplication.shared.open(URL(string: "https://google.com")!)}
+                Button("Resume") {UIApplication.shared.open(URL(string: "https://drive.google.com/file/d/1CpnM3mrM9Sah3Bn9WRtXzFs6qaFuBD9b/view")!)}
                 Button("LinkedIn") {UIApplication.shared.open(URL(string: "https://www.linkedin.com/in/subhanchaudhry/")!)}
                 Button("Github") {UIApplication.shared.open(URL(string: "https://github.com/subhanc")!)}
 
