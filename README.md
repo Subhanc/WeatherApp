@@ -17,6 +17,17 @@ To built a weather app using the https://openweathermap.org/api/one-call-api API
 
 # Documentation 
 
+
+# Notes/Shortcuts due to time
+
+Used Alamofire - Alamofire is an elegant and composable way to interface to HTTP network requests. It builds on top of Apple's URL Loading System provided by the Foundation framework. Ideally, I would have liked to use Apple's native URLSession since it is more secure. Using Alamofire can create a security vulnerability since our App is dependant on a third-party package. 
+
+I used SwiftUI over UIKit - Easy to build out UI componenets. Also allows for easy implementation for reactive code. 
+
+Forced Unwrapped some values in some areas. We should be saftely unwrapping with `guard` or `if let` statements. 
+
+Did not focus on user-experience. i.e showing activity indicator when loading response. 
+
 ## Packages 
 
 The project has the following third-party dependecie. Uses Swift Packages for package management:
