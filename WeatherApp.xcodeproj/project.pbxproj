@@ -20,7 +20,6 @@
 		0DECF41F27B2E33B0006D2DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DECF41E27B2E33B0006D2DF /* Preview Assets.xcassets */; };
 		0DECF42727B2E7F80006D2DF /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DECF42627B2E7F80006D2DF /* WeatherService.swift */; };
 		0DECF42A27B2E8730006D2DF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DECF42927B2E8730006D2DF /* Alamofire */; };
-		0DECF42E27B2E91D0006D2DF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0DECF42D27B2E91D0006D2DF /* SwiftyJSON */; };
 		0DECF43227B2FFC40006D2DF /* WeatherForcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DECF43127B2FFC40006D2DF /* WeatherForcastResponse.swift */; };
 		0DECF46B27B308070006D2DF /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DECF46A27B308070006D2DF /* TabBarView.swift */; };
 		0DECF46F27B3091F0006D2DF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DECF46E27B3091F0006D2DF /* ProfileView.swift */; };
@@ -53,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DECF42E27B2E91D0006D2DF /* SwiftyJSON in Frameworks */,
 				0DECF42A27B2E8730006D2DF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,7 +165,6 @@
 			name = WeatherApp;
 			packageProductDependencies = (
 				0DECF42927B2E8730006D2DF /* Alamofire */,
-				0DECF42D27B2E91D0006D2DF /* SwiftyJSON */,
 			);
 			productName = WeatherApp;
 			productReference = 0DECF41427B2E3370006D2DF /* WeatherApp.app */;
@@ -199,7 +196,6 @@
 			mainGroup = 0DECF40B27B2E3370006D2DF;
 			packageReferences = (
 				0DECF42827B2E8730006D2DF /* XCRemoteSwiftPackageReference "Alamofire" */,
-				0DECF42C27B2E91D0006D2DF /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 0DECF41527B2E3370006D2DF /* Products */;
 			projectDirPath = "";
@@ -457,14 +453,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		0DECF42C27B2E91D0006D2DF /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -472,11 +460,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0DECF42827B2E8730006D2DF /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		0DECF42D27B2E91D0006D2DF /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0DECF42C27B2E91D0006D2DF /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
