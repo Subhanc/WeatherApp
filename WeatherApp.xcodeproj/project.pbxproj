@@ -28,13 +28,13 @@
 
 /* Begin PBXFileReference section */
 		0D1C5E6D27B3196E00D3416F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		0D1C5E6F27B31AD100D3416F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0D1C5E7427B325D800D3416F /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		0DB30B2527B3289F006A05A4 /* ForcastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastViewModel.swift; sourceTree = "<group>"; };
 		0DB30B2927B32F41006A05A4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0DB30B2B27B3316F006A05A4 /* ForcastDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastDetailsView.swift; sourceTree = "<group>"; };
 		0DB30B3227B35EA7006A05A4 /* ForcastDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastDetails.swift; sourceTree = "<group>"; };
 		0DB30B3427B35EEB006A05A4 /* Forcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forcast.swift; sourceTree = "<group>"; };
+		0DB30B3A27B366CD006A05A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DECF41427B2E3370006D2DF /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DECF41727B2E3370006D2DF /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		0DECF41927B2E3370006D2DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		0DECF41627B2E3370006D2DF /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				0D1C5E6F27B31AD100D3416F /* Info.plist */,
+				0DB30B3A27B366CD006A05A4 /* Info.plist */,
 				0DB30B3127B35E7D006A05A4 /* Extensions */,
 				0DECF46727B307E50006D2DF /* Views */,
 				0DECF43027B2EC550006D2DF /* ViewModels */,
