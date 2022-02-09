@@ -6,18 +6,16 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
         
-        
-            .onAppear {
-                Service.shared.fetchSevenDayForcast { result in
-                    print(result)
-                }
+        NavigationView {
+            ScrollView{
+                WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
             }
+        }
     }
 }
 

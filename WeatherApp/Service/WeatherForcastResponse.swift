@@ -13,9 +13,9 @@ struct WeatherForcastResponse: Decodable {
     let lat: Float
     let lon: Float
     
-    let daily: [SevenDayForcast]
+    let daily: [Forcast]
     
-    struct SevenDayForcast: Decodable {
+    struct Forcast: Decodable {
         
         struct Temperature: Decodable {
             let min: Double
@@ -36,6 +36,7 @@ struct WeatherForcastResponse: Decodable {
         struct Weather: Decodable {
             let main: String
             let description: String
+            let icon: String
         }
         
         let dt: Int
