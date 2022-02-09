@@ -26,6 +26,8 @@ Forced Unwrapped some values in some areas. We should be saftely unwrapping with
 
 Did not focus on user-experience. i.e showing activity indicator when loading response. 
 
+Refresh button will work when CLLocatioon has collected at least one CLLocation value. 
+
 ## Packages 
 
 The project has the following third-party dependecie. Uses Swift Packages for package management:
