@@ -14,15 +14,11 @@ class WeatherService: NSObject {
     public static let ACCESS_TOKEN = "e996f0727652a1fd7ef3261c783e7dc4"
     
     public static let API_URL = "https://api.openweathermap.org/data/2.5/onecall"
-    
-    private var locationManager: CLLocationManager = CLLocationManager()
-    private var location: CLLocation? = nil
-    private var completionHandler: ((WeatherForcastResponse?, LocationAuthError?) -> Void)?
-    
-    public init(locationManager: CLLocationManager) {
-        super.init()
-        self.locationManager = locationManager
-        self.locationManager.delegate = self
+
+    enum LocationAuthError: Error {
+        case locationIsNil
+        case failToDecodeResponse
+        case httpRequestError
     }
         
     enum Exclude: String {
@@ -37,21 +33,13 @@ class WeatherService: NSObject {
         case metric = "metric"
     }
     
-    public func loadWeatherData(_ completionHandler: @escaping((WeatherForcastResponse?, LocationAuthError?) -> Void)) {
-        self.fetchSevenDayForcast()
-        self.completionHandler = completionHandler
-        loadDataOrRequestLocationAuth()
-    }
-
-    
-    // Long and Lat are place holders until I get CLLocation working.
-    public func fetchSevenDayForcast(excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather],
-                               unitType: UnitType = .metric) {
+    public func loadWeatherData(_ location: CLLocation?, excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather],
+                                     unitType: UnitType = .metric, completion: @escaping((WeatherForcastResponse?, LocationAuthError?) -> Void)) {
                
         let excludes: String = excludes.map { $0.rawValue }.joined(separator: ",")
         
         guard let location = location else {
-            print("location is empty")
+            completion(nil, .locationIsNil)
             return
         }
         
@@ -65,6 +53,7 @@ class WeatherService: NSObject {
 
         let request = AF.request(WeatherService.API_URL, parameters: parameters)
         
+        print("fetching data")
         request.responseData { response in
             switch response.result {
                 case .success(let data):
@@ -73,42 +62,16 @@ class WeatherService: NSObject {
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let response = try decoder.decode(WeatherForcastResponse.self, from: data)
-                        self.completionHandler?(response, nil)
+                        completion(response, nil)
                     } catch {
                         print("Error while decoding response \(error.localizedDescription)")
+                        completion(nil, .failToDecodeResponse)
                     }
                 case .failure(let error):
                         print(error.localizedDescription)
+                        completion(nil, .httpRequestError)
+
             }
         }
     }
-    
-    private func loadDataOrRequestLocationAuth() {
-       switch locationManager.authorizationStatus {
-           case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.startUpdatingLocation()
-           case .denied, .restricted:
-             completionHandler?(nil, LocationAuthError())
-           default:
-               completionHandler?(nil, LocationAuthError()) // locationManager.requestWhenInUseAuthorization()
-        }
-     }
-}
-
-extension WeatherService: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
-            return
-        }
-        
-        self.location = location
-    }
-        
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Something went wrong: \(error.localizedDescription)")
-    }
-}
-
-public struct LocationAuthError: Error {
-    
 }

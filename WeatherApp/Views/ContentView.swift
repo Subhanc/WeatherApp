@@ -9,17 +9,31 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    private var locationManager = CLLocationManager()
+    
+    @StateObject var locationViewModel = LocationViewModel()
+    
     var body: some View {
         NavigationView {
-            ScrollView{
-                ForcastView(viewModel: ForcastViewModel(weatherService: WeatherService(locationManager: locationManager)))
+            ScrollView {
+                switch locationViewModel.authorizationStatus {
+                      case .notDetermined:
+                          Text("We need your location permission to track you")
+                      case .restricted:
+                          ErrorView(errorText: "Location use is restricted.")
+                      case .denied:
+                          ErrorView(errorText: "The app does not have location permissions. Please enable them in settings.")
+                      case .authorizedAlways, .authorizedWhenInUse:
+                            ForcastView(viewModel: ForcastViewModel())
+                                .environmentObject(locationViewModel)
+                      default:
+                          Text("Unexpected status")
+                }
             }
             .navigationTitle(Date().getFormattedDate(format: "MMM dd, yyyy") )
             .toolbar {
                 Button {
                     print("requesting location")
-                    locationManager.requestWhenInUseAuthorization()
+                    locationViewModel.requestPermission()
                 } label: {
                     Image(systemName: "location.fill")
                         .foregroundColor(.blue)

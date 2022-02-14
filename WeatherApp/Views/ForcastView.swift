@@ -7,18 +7,20 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
 
 struct ForcastView: View {
 
     @ObservedObject var viewModel: ForcastViewModel
-
+    @EnvironmentObject var locationViewModel: LocationViewModel
+    
     var body: some View {
-          LazyVStack(alignment: .leading) {
+          VStack(alignment: .leading) {
               HStack {
                   Text("7-Day Forcast").font(.title).bold()
                   Spacer()
                   Button("Refresh") {
-                      viewModel.load()
+                      viewModel.load(locationViewModel: locationViewModel)
                   }.foregroundColor(.blue)
               }
               if self.viewModel.forcasts.isEmpty {
@@ -32,7 +34,9 @@ struct ForcastView: View {
                   }
               }
           }.padding()
-         .onAppear(perform: viewModel.load)
+            .onAppear {
+                viewModel.load(locationViewModel: locationViewModel)
+            }
       }
     
     
@@ -55,7 +59,7 @@ struct ForcastView: View {
                 }
                 Spacer()
                 AsyncImage(url: forcast.iconUrl) { image in
-                    image.frame(width: 32.0, height: 32.0)
+                    image.frame(width: 15.0, height: 15.0)
                 } placeholder: {
                     ProgressView()
                 }.padding(.trailing)
