@@ -11,16 +11,14 @@ import CoreLocation
 
 class WeatherService: NSObject {
         
-    public static let ACCESS_TOKEN = "e996f0727652a1fd7ef3261c783e7dc4"
-    
-    public static let API_URL = "https://api.openweathermap.org/data/2.5/onecall"
+    public static let API_URL = "https://api.openweathermap.org/data/2.5"
 
-    enum LocationAuthError: Error {
-        case locationIsNil
-        case failToDecodeResponse
-        case httpRequestError
-    }
+    public static let ACCESS_TOKEN = "e996f0727652a1fd7ef3261c783e7dc4"
         
+    enum URLPath: String {
+        case onecall = "/onecall"
+    }
+    
     enum Exclude: String {
         case currentWeather = "current"
         case minutely = "minutely"
@@ -32,9 +30,15 @@ class WeatherService: NSObject {
     enum UnitType: String {
         case metric = "metric"
     }
+
+    enum WeatherServiceError: Error {
+        case locationIsNil
+        case failToDecodeResponse
+        case httpRequestError
+    }
     
     public func loadWeatherData(_ location: CLLocation?, excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather],
-                                     unitType: UnitType = .metric, completion: @escaping((WeatherForcastResponse?, LocationAuthError?) -> Void)) {
+                                     unitType: UnitType = .metric, completion: @escaping((WeatherForcastResponse?, WeatherServiceError?) -> Void)) {
                
         let excludes: String = excludes.map { $0.rawValue }.joined(separator: ",")
         
@@ -51,9 +55,9 @@ class WeatherService: NSObject {
             "units": unitType
         ]
 
-        let request = AF.request(WeatherService.API_URL, parameters: parameters)
+        let request = AF.request(WeatherService.API_URL + URLPath.onecall.rawValue, parameters: parameters)
         
-        print("fetching data")
+        print("Fetching data")
         request.responseData { response in
             switch response.result {
                 case .success(let data):

@@ -11,7 +11,7 @@ struct TabBarView: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             TabView {
-               ContentView().tabItem{
+               MainView().tabItem{
                     Image(icon: .placeholder)
                     Text("Forcast")
                 }.tag(Screen.forcast)
