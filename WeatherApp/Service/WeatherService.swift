@@ -61,7 +61,7 @@ class WeatherService: NSObject {
         request.responseData { response in
             switch response.result {
                 case .success(let data):
-                
+    
                     do {
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .convertFromSnakeCase

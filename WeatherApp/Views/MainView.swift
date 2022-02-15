@@ -20,7 +20,7 @@ struct MainView: View {
                           ForcastView(viewModel: ForcastViewModel())
                               .environmentObject(locationViewModel)
                       case .notDetermined:
-                    Text("We need your location permission to track you")
+                          Text("We need your location permission to track you")
                       case .restricted:
                           ErrorView(errorText: "Location use is restricted.")
                       case .denied:
@@ -29,7 +29,7 @@ struct MainView: View {
                           Text("Unexpected status")
                 }
             }
-            .navigationTitle(Date().getFormattedDate(format: "MMM dd, yyyy") )
+            .navigationTitle(Date().formateDate(format: "MMM dd, yyyy") )
             .toolbar {
                 Button {
                     locationViewModel.requestPermission()

@@ -8,9 +8,7 @@
 import Foundation
 import SwiftUI
 
-
 struct ForcastCellView: View {
-    
     let forcast: Forcast
     
     var body: some View {
@@ -28,7 +26,7 @@ struct ForcastCellView: View {
                         Text(String(forcast.maxTemperature) + "°C")
                     }
                     
-                    Text(forcast.date.getFormattedDate(format: "MM-dd-yyyy")).font(.caption)
+                    Text(forcast.date.formateDate(format: "MM-dd-yyyy")).font(.caption)
                 }
                 Spacer()
                 AsyncImage(url: forcast.iconUrl) { image in
