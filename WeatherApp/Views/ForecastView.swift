@@ -16,11 +16,11 @@ struct ForecastView: View {
     
     var body: some View {
         Group {
-            Header()
-            if self.viewModel.forcasts.isEmpty {
-                EmptyView()
+            header
+            if self.viewModel.forecasts.isEmpty {
+                emptyView
             } else {
-                Content()
+                content
             }
         }
         .onReceive(locationViewModel.$lastSeenLocation, perform: { newLocation in
@@ -29,18 +29,18 @@ struct ForecastView: View {
         .id("ForecastView")
     }
     
-    private func Content() -> some View {
-        ForEach(self.viewModel.forcasts) { forcast in
-            NavigationLink(destination: ForcastDetailsView(forcastDetails: forcast.forcastDetails)) {
-                ForcastCellView(forcast: forcast)
+    private var content: some View {
+        ForEach(self.viewModel.forecasts) { forecast in
+            NavigationLink(destination: ForecastDetailsView(forecastDetails: forecast.forecastDetails)) {
+                ForecastCellView(forecast: forecast)
             }
-            .id(forcast.id)
+            .id(forecast.id)
         }
     }
     
-    private func Header() -> some View {
+    private var header: some View {
         HStack {
-            Text("7-Day Forcast").font(.title).bold()
+            Text("7-Day Forecast").font(.title).bold()
             Spacer()
             Button("Refresh") {
                 viewModel.load(location: locationViewModel.lastSeenLocation)
@@ -50,7 +50,7 @@ struct ForecastView: View {
         .id("Header")
     }
     
-    private func EmptyView() -> some View {
+    private var emptyView: some View {
         Text("No data to show")
     }
 }

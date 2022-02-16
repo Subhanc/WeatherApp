@@ -11,7 +11,7 @@ import CoreLocation
 
 class ForecastViewModel: ObservableObject {
    
-    @Published var forcasts: [Forcast] = []
+    @Published var forecasts: [Forecast] = []
     
     let weatherService: WeatherService
     
@@ -25,8 +25,8 @@ class ForecastViewModel: ObservableObject {
                 return
             }
             DispatchQueue.main.async  {
-                self.forcasts = weather.daily.map {
-                    Forcast(dailyForcastResponse: $0)
+                self.forecasts = weather.daily.map {
+                    Forecast(dailyForecastResponse: $0)
                 }
             }
         }

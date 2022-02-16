@@ -11,7 +11,7 @@ import CoreLocation
 class LocationViewModel: NSObject, ObservableObject {
     @Published var authorizationStatus: CLAuthorizationStatus
     @Published var lastSeenLocation: CLLocation?
-    @Published var lastSeenCity: String?
+    private var lastSeenCity: String?
     
     private let locationManager: CLLocationManager
     
@@ -21,12 +21,13 @@ class LocationViewModel: NSObject, ObservableObject {
         
         super.init()
         
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        self.locationManager.delegate = self
+        self.locationManager.startUpdatingLocation()
     }
 }
 
 extension LocationViewModel: CLLocationManagerDelegate {
+   
     func requestPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
@@ -34,6 +35,7 @@ extension LocationViewModel: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
     }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.first else {
             lastSeenLocation = nil

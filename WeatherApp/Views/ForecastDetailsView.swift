@@ -8,15 +8,15 @@
 import Foundation
 import SwiftUI
 
-struct ForcastDetailsView: View {
+struct ForecastDetailsView: View {
     
-    let forcastDetails: ForcastDetails
+    let forecastDetails: ForecastDetails
     
     var body: some View {
         VStack {
-          Text(forcastDetails.main)
-          Text("Description: \(forcastDetails.description)")
-          AsyncImage(url: forcastDetails.icon) { image in
+          Text(forecastDetails.main)
+          Text("Description: \(forecastDetails.description)")
+          AsyncImage(url: forecastDetails.icon) { image in
                   image.frame(width: 100, height: 100)
               } placeholder: {
                   ProgressView()

@@ -1,5 +1,5 @@
 //
-//  WeatherForcastResponse.swift
+//  WeatherForecastResponse.swift
 //  WeatherApp
 //
 //  Created by Subhan Chaudhry on 2022-02-08.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct WeatherForcastResponse: Decodable {
+struct OpenWeatherForecastResponse: Decodable {
     let timezone: String
     let timezoneOffset: Int
     let lat: Float
     let lon: Float
     
-    let daily: [Forcast]
+    let daily: [Forecast]
     
-    struct Forcast: Decodable {
+    struct Forecast: Decodable {
         
         struct Temperature: Decodable {
             let min: Double

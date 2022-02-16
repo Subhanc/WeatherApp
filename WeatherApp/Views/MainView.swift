@@ -30,12 +30,13 @@ struct MainView: View {
             }
             .navigationTitle(Date().formateDate(format: "MMM dd, yyyy") )
             .toolbar {
-                Button {
-                    locationViewModel.requestPermission()
-                } label: {
-                    Image(systemName: "location.fill")
-                        .foregroundColor(.blue)
-                        .frame(width: 32, height: 32)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        locationViewModel.requestPermission()
+                    } label: {
+                        Image(systemName: "location.fill")
+                            .foregroundColor(.blue)
+                    }
                 }
             }
         }

@@ -4,7 +4,7 @@ import SwiftUI
 struct TabBarView: View {
     
     enum Screen: Int {
-        case forcast = 0
+        case forecast = 0
         case profile = 1
     }
     
@@ -13,8 +13,8 @@ struct TabBarView: View {
             TabView {
                MainView().tabItem{
                     Image(icon: .placeholder)
-                    Text("Forcast")
-                }.tag(Screen.forcast)
+                    Text("Forecast")
+                }.tag(Screen.forecast)
                 
                 ProfileView().tabItem {
                     Image(icon: .profile)

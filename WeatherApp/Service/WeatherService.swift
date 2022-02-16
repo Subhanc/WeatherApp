@@ -13,11 +13,5 @@ protocol WeatherService {
     var ACCESS_TOKEN: String { get }
     
     func loadWeatherData(_ location: CLLocation?,
-                         completion: @escaping((WeatherForcastResponse?, WeatherServiceError?) -> Void))
-}
-
-enum WeatherServiceError: Error {
-    case locationIsNil
-    case failToDecodeResponse
-    case httpRequestError
+                         completion: @escaping((OpenWeatherForecastResponse?, WeatherServiceError?) -> Void))
 }

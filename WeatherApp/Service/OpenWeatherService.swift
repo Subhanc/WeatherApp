@@ -32,7 +32,7 @@ class OpenWeatherService: WeatherService {
     }
 
     public func loadWeatherData(_ location: CLLocation?,
-                                completion: @escaping (WeatherForcastResponse?, WeatherServiceError?) -> Void) {
+                                completion: @escaping (OpenWeatherForecastResponse?, WeatherServiceError?) -> Void) {
                
         let excludes: [Exclude] = [.alerts, .hourly, .minutely, .currentWeather]
         let unitType = UnitType.metric
@@ -60,7 +60,7 @@ class OpenWeatherService: WeatherService {
                     do {
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let response = try decoder.decode(WeatherForcastResponse.self, from: data)
+                        let response = try decoder.decode(OpenWeatherForecastResponse.self, from: data)
                         completion(response, nil)
                     } catch {
                         print("Error while decoding response \(error.localizedDescription)")
