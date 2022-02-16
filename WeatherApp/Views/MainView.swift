@@ -14,11 +14,10 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            List {
                 switch locationViewModel.authorizationStatus {
                       case .authorizedAlways, .authorizedWhenInUse:
-                          ForcastView(viewModel: ForcastViewModel())
-                              .environmentObject(locationViewModel)
+                          ForecastView(viewModel: ForecastViewModel(), locationViewModel: locationViewModel)
                       case .notDetermined:
                           Text("We need your location permission to track you")
                       case .restricted:

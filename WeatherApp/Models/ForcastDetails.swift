@@ -11,7 +11,9 @@ struct ForcastDetails {
     let main: String
     let description: String
     let icon: URL
-    
+}
+
+extension ForcastDetails {
     init(weather: WeatherForcastResponse.Forcast.Weather) {
         self.main = weather.main
         self.description = weather.description

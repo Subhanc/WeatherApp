@@ -10,15 +10,17 @@ import CoreLocation
 
 class LocationViewModel: NSObject, ObservableObject {
     @Published var authorizationStatus: CLAuthorizationStatus
-    var lastSeenLocation: CLLocation?
+    @Published var lastSeenLocation: CLLocation?
+    @Published var lastSeenCity: String?
     
     private let locationManager: CLLocationManager
     
-    override init() {
-        locationManager = CLLocationManager()
+    init(locationManager: CLLocationManager = CLLocationManager()) {
+        self.locationManager = locationManager
         authorizationStatus = locationManager.authorizationStatus
         
         super.init()
+        
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
@@ -33,6 +35,21 @@ extension LocationViewModel: CLLocationManagerDelegate {
         authorizationStatus = manager.authorizationStatus
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        lastSeenLocation = locations.first
+        guard let currentLocation = locations.first else {
+            lastSeenLocation = nil
+            lastSeenCity = nil
+            return
+        }
+        
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(currentLocation) { placemarks, error in
+            let city = placemarks?.first?.locality
+            
+            if city != self.lastSeenCity {
+                self.lastSeenCity = city
+                self.lastSeenLocation = currentLocation
+            }
+        }
     }
 }

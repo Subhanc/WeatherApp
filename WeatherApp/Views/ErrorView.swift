@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 struct ErrorView: View {
+    
     let errorText: String
+    
     var body: some View {
         VStack {
             Image(systemName: "xmark.octagon")
@@ -18,7 +20,5 @@ struct ErrorView: View {
             Text(errorText)
         }
         .padding()
-        .foregroundColor(.white)
-        .background(Color.red)
     }
 }

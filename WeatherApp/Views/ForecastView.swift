@@ -9,22 +9,24 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct ForcastView: View {
-
-    @ObservedObject var viewModel: ForcastViewModel
-    @EnvironmentObject var locationViewModel: LocationViewModel
+struct ForecastView: View {
+    
+    @StateObject var viewModel: ForecastViewModel
+    @ObservedObject var locationViewModel: LocationViewModel
     
     var body: some View {
-          VStack(alignment: .leading) {
-              Header()
-             if self.viewModel.forcasts.isEmpty {
-                  EmptyView()
-              } else {
-                  Content()
-              }
-          }
-        .padding()
-        .onAppear { viewModel.load(locationViewModel: locationViewModel) }
+        Group {
+            Header()
+            if self.viewModel.forcasts.isEmpty {
+                EmptyView()
+            } else {
+                Content()
+            }
+        }
+        .onReceive(locationViewModel.$lastSeenLocation, perform: { newLocation in
+            viewModel.load(location: newLocation)
+        })
+        .id("ForecastView")
     }
     
     private func Content() -> some View {
@@ -32,6 +34,7 @@ struct ForcastView: View {
             NavigationLink(destination: ForcastDetailsView(forcastDetails: forcast.forcastDetails)) {
                 ForcastCellView(forcast: forcast)
             }
+            .id(forcast.id)
         }
     }
     
@@ -40,10 +43,11 @@ struct ForcastView: View {
             Text("7-Day Forcast").font(.title).bold()
             Spacer()
             Button("Refresh") {
-                viewModel.load(locationViewModel: locationViewModel)
+                viewModel.load(location: locationViewModel.lastSeenLocation)
                 
             }.foregroundColor(.blue)
         }
+        .id("Header")
     }
     
     private func EmptyView() -> some View {

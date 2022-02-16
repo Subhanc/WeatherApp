@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 struct ForcastDetailsView: View {
+    
     let forcastDetails: ForcastDetails
+    
     var body: some View {
         VStack {
           Text(forcastDetails.main)

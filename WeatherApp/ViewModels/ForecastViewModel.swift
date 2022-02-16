@@ -9,17 +9,18 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-class ForcastViewModel: ObservableObject {
+class ForecastViewModel: ObservableObject {
+   
     @Published var forcasts: [Forcast] = []
     
-    public let weatherService: WeatherService
+    let weatherService: WeatherService
     
-    public init() {
-        self.weatherService = WeatherService()
+    public init(weatherService: WeatherService = OpenWeatherService()) {
+        self.weatherService = weatherService
     }
     
-    public func load(locationViewModel: LocationViewModel) {
-        weatherService.loadWeatherData(locationViewModel.lastSeenLocation) { (weather, error) in
+    public func load(location: CLLocation?) {
+        weatherService.loadWeatherData(location) { (weather, error) in
             guard let weather = weather else {
                 return
             }

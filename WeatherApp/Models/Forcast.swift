@@ -7,14 +7,17 @@
 
 import Foundation
 
-class Forcast: Identifiable {
+struct Forcast: Identifiable {
+    let id = UUID()
     let date: Date
     let iconUrl: URL
     let minTemperature: Double
     let maxTemperature: Double
 
     let forcastDetails: ForcastDetails
-      
+}
+
+extension Forcast {
     init(dailyForcastResponse: WeatherForcastResponse.Forcast) {
         self.date = Date(timeIntervalSince1970: TimeInterval(dailyForcastResponse.dt))
         self.minTemperature = dailyForcastResponse.temp.min

@@ -35,7 +35,6 @@ struct ForcastCellView: View {
                     ProgressView()
                 }.padding(.trailing)
             }
-            Divider()
         }
     }
 }
